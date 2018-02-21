@@ -19,11 +19,9 @@ double getVal(double **array_1, double **array_2, int n, int i, int j){
 }
 
 int main(int argc, char *argv[]){
-    // cout << "Enter matrix size (n): ";
     int n;
     istringstream iss(argv[1]);
     iss >> n;
-    // cin >> n;
     cout << "Matrix size " << n << " x " << n << "" ".\n";
 
     // First matrix
@@ -77,17 +75,8 @@ int main(int argc, char *argv[]){
     chrono::duration<double> elapsed = end - start;
     cout << "Elapsed time: " << elapsed.count() << ".\n";
 
-
-    // cout << "\n\n\nResultant matrix: \n";
-
-    // for (int row = 0; row < n ; row++){
-    //     for (int col = 0; col < n ; col++){
-    //         cout << result[row][col] <<  (col == n-1 ? "" : "\t");
-    //     }
-    //     cout << "\n";
-    // }
-
-
+        
+    // IMPORTANT- Release memory. Otherwise made in stack -> seg faults
     delete matrix_1;
     delete matrix_2;
     delete result;   
