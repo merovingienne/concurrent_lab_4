@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
     int n;
     istringstream iss(argv[1]);
     iss >> n;
-    cout << "Matrix size " << n << " x " << n << "" ".\n";
+    // cout << "Matrix size " << n << " x " << n << "" ".\n";
 
     double **matrix_1;
     matrix_1 = new double*[n];
@@ -31,15 +31,15 @@ int main(int argc, char *argv[]){
         matrix_1[i] = new double[n]; 
     }
 
-    cout << "Input matrix_1:\n";
+    // cout << "Input matrix_1:\n";
     for (int row = 0; row < n ; row++){
         for (int col = 0; col < n ; col++){
             matrix_1[row][col] = randVal(generator);
             // DISABLE IF YOU MAKE HUGE MATRIX
-            cout << matrix_1[row][col] << (col == n-1 ? "" : "\t");
+            // cout << matrix_1[row][col] << (col == n-1 ? "" : "\t");
         }
         // DISABLE IF YOU MAKE HUGE MATRIX
-        cout << "\n";
+        // cout << "\n";
     }
 
     double **matrix_2;
@@ -49,15 +49,15 @@ int main(int argc, char *argv[]){
         matrix_2[i] = new double[n]; 
     }
 
-    cout << "Input matrix_2:\n";
+    // cout << "Input matrix_2:\n";
     for (int row = 0; row < n ; row++){
         for (int col = 0; col < n ; col++){
             matrix_2[row][col] = randVal(generator);
             // DISABLE IF YOU MAKE HUGE MATRIX
-            cout << matrix_2[row][col] << (col == n-1 ? "" : "\t");
+            // cout << matrix_2[row][col] << (col == n-1 ? "" : "\t");
         }
         // DISABLE IF YOU MAKE HUGE MATRIX
-        cout << "\n";
+        // cout << "\n";
     }
 
     double **result;
@@ -82,14 +82,14 @@ int main(int argc, char *argv[]){
 
 
     // DISABLE BLOCK IF YOU MAKE HUGE MATRIX   {
-    cout << "\n\n\nResultant matrix: \n";
+    // cout << "\n\n\nResultant matrix: \n";
 
-    for (int row = 0; row < n ; row++){
-        for (int col = 0; col < n ; col++){
-            cout << result[row][col] <<  (col == n-1 ? "" : "\t");
-        }
-        cout << "\n";
-    }
+    // for (int row = 0; row < n ; row++){
+    //     for (int col = 0; col < n ; col++){
+    //         cout << result[row][col] <<  (col == n-1 ? "" : "\t");
+    //     }
+    //     cout << "\n";
+    // }
 
     // }
 
