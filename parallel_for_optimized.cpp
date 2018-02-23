@@ -13,10 +13,20 @@ uniform_real_distribution<double> randVal(1, 10);
 double getVal(double **array_1, double **array_2, int n, int i, int j){
     double val = 0;
     for (int k = 0; k < n ; k++){
-        val += array_1[i][k] * array_2[k][j];
+        val += array_1[i][k] * array_2[j][k];
     }
     return val;
 }
+
+
+void transpose(double **array, double **new_array, int rows, int cols){
+    for (int i=0; i < rows; i++){
+        for (int j=0; j < cols; j++){
+            new_array[j][i] = array[i][j];
+        }
+    }
+}
+
 
 int main(int argc, char *argv[]){
     int n;
@@ -60,14 +70,24 @@ int main(int argc, char *argv[]){
         result[i] = new double[n]; 
     }
 
-    // cout << "Calculating multiplication...\n";
+
+    // transpose second matrix to exploit spatial locality.
+    double **new_matrix_2;
+    new_matrix_2 = new double*[n];
+    
+    for (int i  = 0 ; i < n ; i++){
+        new_matrix_2[i] = new double[n]; 
+    }
+    transpose(matrix_2, new_matrix_2, n, n);
+
+
     auto start = chrono::high_resolution_clock::now();
 
     #pragma omp parallel for
     for (int i = 0; i < n; i++ ){
         #pragma omp parallel for
         for (int j = 0; j < n; j++){
-            result[i][j] = getVal(matrix_1, matrix_2, n, i, j);
+            result[i][j] = getVal(matrix_1, new_matrix_2, n, i, j);
         }
     }
 
